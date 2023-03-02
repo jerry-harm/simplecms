@@ -4,6 +4,7 @@ import tkinter.messagebox
 import client
 from sys import exit
 
+
 def login_window(cl):
     root = Tk()
     root.title('登录')
@@ -14,7 +15,7 @@ def login_window(cl):
         if cl.login(username, password):
             root.destroy()
         else:
-            tkinter.messagebox.showwarning('错误','登录失败')
+            tkinter.messagebox.showwarning('错误', '登录失败')
             root.destroy()
             exit()
 
@@ -34,6 +35,7 @@ def login_window(cl):
     frame1.pack()
     root.attributes("-topmost", 1)
     root.mainloop()
+
 
 def main_window(cl):
     root = Tk()
@@ -66,13 +68,13 @@ def main_window(cl):
         if pwd == '':
             pwd = '无'
         if len(num) == 11:
-            cell = {num:[pwd,{}]}
+            cell = {num: [pwd, {}]}
             for i in string.strip().split("\n"):
                 if i != '\n':
                     active = i.split(' ')
                     if len(active) == 2:
                         if active[0] not in cell[num][1]:
-                            cell[num][1][active[0]]=active[1]
+                            cell[num][1][active[0]] = active[1]
             try:
                 cl.send_cell(cell)
                 text.delete('0.0', END)
